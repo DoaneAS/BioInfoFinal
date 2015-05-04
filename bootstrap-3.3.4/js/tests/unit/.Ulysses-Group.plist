@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>createMarkedFile</key>
+	<false/>
+	<key>sheetClusters</key>
+	<array>
+		<array>
+			<string>affix.js</string>
+		</array>
+		<array>
+			<string>alert.js</string>
+		</array>
+		<array>
+			<string>button.js</string>
+		</array>
+		<array>
+			<string>carousel.js</string>
+		</array>
+		<array>
+			<string>collapse.js</string>
+		</array>
+		<array>
+			<string>dropdown.js</string>
+		</array>
+		<array>
+			<string>modal.js</string>
+		</array>
+		<array>
+			<string>phantom.js</string>
+		</array>
+		<array>
+			<string>popover.js</string>
+		</array>
+		<array>
+			<string>scrollspy.js</string>
+		</array>
+		<array>
+			<string>tab.js</string>
+		</array>
+		<array>
+			<string>tooltip.js</string>
+		</array>
+	</array>
+</dict>
+</plist>

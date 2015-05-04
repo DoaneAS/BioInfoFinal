@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>createMarkedFile</key>
+	<false/>
+	<key>sheetClusters</key>
+	<array>
+		<array>
+			<string>anchor.js</string>
+		</array>
+		<array>
+			<string>autoprefixer.js</string>
+		</array>
+		<array>
+			<string>Blob.js</string>
+		</array>
+		<array>
+			<string>FileSaver.js</string>
+		</array>
+		<array>
+			<string>holder.js</string>
+		</array>
+		<array>
+			<string>jszip.min.js</string>
+		</array>
+		<array>
+			<string>less.min.js</string>
+		</array>
+		<array>
+			<string>uglify.min.js</string>
+		</array>
+		<array>
+			<string>ZeroClipboard.min.js</string>
+		</array>
+	</array>
+</dict>
+</plist>

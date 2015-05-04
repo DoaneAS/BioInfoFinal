@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>childOrder</key>
+	<array>
+		<string>blog</string>
+		<string>carousel</string>
+		<string>cover</string>
+		<string>dashboard</string>
+		<string>grid</string>
+		<string>jumbotron</string>
+		<string>jumbotron-narrow</string>
+		<string>justified-nav</string>
+		<string>navbar</string>
+		<string>navbar-fixed-top</string>
+		<string>navbar-static-top</string>
+		<string>non-responsive</string>
+		<string>offcanvas</string>
+		<string>screenshots</string>
+		<string>signin</string>
+		<string>starter-template</string>
+		<string>sticky-footer</string>
+		<string>sticky-footer-navbar</string>
+		<string>theme</string>
+		<string>tooltip-viewport</string>
+	</array>
+	<key>createMarkedFile</key>
+	<false/>
+</dict>
+</plist>

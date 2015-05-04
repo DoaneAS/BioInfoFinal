@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>createMarkedFile</key>
+	<false/>
+	<key>sheetClusters</key>
+	<array>
+		<array>
+			<string>browser-bugs.yml</string>
+		</array>
+		<array>
+			<string>core-team.yml</string>
+		</array>
+		<array>
+			<string>glyphicons.yml</string>
+		</array>
+		<array>
+			<string>sass-team.yml</string>
+		</array>
+		<array>
+			<string>showcase.yml</string>
+		</array>
+		<array>
+			<string>translations.yml</string>
+		</array>
+	</array>
+</dict>
+</plist>
