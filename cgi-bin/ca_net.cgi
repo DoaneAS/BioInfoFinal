@@ -14,7 +14,7 @@ import os
 os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
 
 import matplotlib as mpl
-#mpl.use('Agg')
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 import MySQLdb as mdb
 import numpy as np
