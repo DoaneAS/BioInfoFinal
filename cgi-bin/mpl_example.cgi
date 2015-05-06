@@ -23,7 +23,8 @@ x = [random.random() for i in range(10)]
 y = [random.random() for i in range(10)]
 
 plt.scatter(x,y)
-plt.savefig('../images/plot.png')
+#plt.savefig('/home/local/CORNELL/asd223/final/images/plot.png')
+plt.savefig('/home/local/CORNELL/asd223/final/images/plot.png')
 
 print '''
 <html>
