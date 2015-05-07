@@ -78,7 +78,9 @@ def uniprot2gene(query):
 
 
 def my_query(qt, IDtype):
-    #query ppi with entrez_id
+    #get info on query gene
+    ann = get_prot_ann(qt)
+
     con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
     try:
         #con = mdb.connect(host='127.0.0.1', port=3307, user='asd223', passwd='5NKEAP', db='ASD223_db')
@@ -96,6 +98,12 @@ def my_query(qt, IDtype):
                     select gene_id, symbol, description from gene_info INNER JOIN PPI
                     where PPI.entrezB = gene_info.gene_id AND %s = PPI.entrezA"""
 
+        stmt_u = """select gene_id, symbol, description from gene_info INNER JOIN PPI
+                    where PPI.entrezA = gene_info.gene_id AND %s = PPI.uniprotB
+                    UNION
+                    select gene_id, symbol, description from gene_info INNER JOIN PPI
+                    where PPI.entrezB = gene_info.gene_id AND %s = PPI.uniprotA"""
+
         #cur.execute("""DROP TEMPORARY TABLE IF EXISTS REC""")
 
         if IDtype == 'entrez':
@@ -106,10 +114,15 @@ def my_query(qt, IDtype):
             cur.execute(stmt_s, (qt, qt))
             Results = cur.fetchall()
 
-        print """<html><h3> %s protein interactions</h1>
+        elif IDtype == 'uniprot':
+            cur.execute(stmt_u, (qt, qt))
+            Results = cur.fetchall()
+
+        print """<html><h4>Protein of interest: %s (%s)</h4>
+                    <h5>%s - %s</h5>
                     <head><title>Interactions with  ..query.. </title></head>
                     <body>
-                    <p>are:</p>""" %(qt)
+                    <p>are:</p>""" %(ann[1], ann[0], ann[2], ann[3])
 
         print  """<table class="table table-striped">
                 <th>Gene ID</th><th>Symbol</th><th>Description</th>
@@ -173,6 +186,15 @@ def my_query_sym(prot_query_sym):
     finally:
         con.close()
 
+def get_prot_ann(q):
+    con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
+    cur = con.cursor()
+    stmt = """SELECT gene_id, symbol, uniprot_id, description
+        FROM gene_master
+        WHERE %s in (gene_id, symbol, uniprot_id)"""
+    cur.execute(stmt, (q,))
+    res = cur.fetchall()[0]
+    return res
 
 qt = parse_query(query)
 for q in qt:
