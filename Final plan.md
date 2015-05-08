@@ -46,4 +46,11 @@ os.environ[‘MPLCONFIGDIR’][1] = tempfile.mkdtemp()
 
 ## include selection for different gene ID types
 
+
+## To show individual interactions:
+first get interacting genes from each int reference 
+-for each interacting gene make a dict, tracking what datasets had it and giving annotation information.
+-could present each query gene seperately or as one combined table.
+-allow user to select which databased to search
+
 [1]:	%20

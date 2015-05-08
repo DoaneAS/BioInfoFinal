@@ -15,6 +15,7 @@ import os
 form = FieldStorage()
 query = form.getfirst('Protein', 0)
 IDtype = form.getfirst('IDtype')
+ppdb = form.getvalue('ppdb')
 #query = 'KRAS; SP100; ARAF'
 
 
@@ -74,34 +75,50 @@ def uniprot2gene(query):
 
 
 
+def get_ppdb(ppdb):
+    dbs = ','.join(ppdb)
+    con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
+    cur = con.cursor()
+    cur = con.cursor()
+    cur.execute("""DROP TABLE IF EXISTS PPI""")
+
+    cur.execute("""CREATE TABLE PPI like MASTER_P""")
+
+    stmt_db = """INSERT IGNORE INTO PPI SELECT * from MASTER_P WHERE FIND_IN_SET(%s,PPDB)"""
+
+    for p in ppdb:
+        cur.execute(stmt_db, (p,))
+    return
 
 
-
-def my_query(qt, IDtype):
+def my_query(qt, IDtype, ppdb):
     #get info on query gene
     ann = get_prot_ann(qt)
+
+    #set up PPI table with indicated databases
+    get_ppdb(ppdb)
 
     con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
     try:
         #con = mdb.connect(host='127.0.0.1', port=3307, user='asd223', passwd='5NKEAP', db='ASD223_db')
         cur = con.cursor()
 
-        stmt_s = """select gene_id, symbol, description from gene_info INNER JOIN PPI
+        stmt_s = """select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
                     where PPI.entrezA = gene_info.gene_id AND %s = PPI.symbolB
                     UNION
-                    select gene_id, symbol, description from gene_info INNER JOIN PPI
+                    select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
                     where PPI.entrezB = gene_info.gene_id AND %s = PPI.symbolA"""
 
-        stmt_e = """select gene_id, symbol, description from gene_info INNER JOIN PPI
+        stmt_e = """select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
                     where PPI.entrezA = gene_info.gene_id AND %s = PPI.entrezB
                     UNION
-                    select gene_id, symbol, description from gene_info INNER JOIN PPI
+                    select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
                     where PPI.entrezB = gene_info.gene_id AND %s = PPI.entrezA"""
 
-        stmt_u = """select gene_id, symbol, description from gene_info INNER JOIN PPI
+        stmt_u = """select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
                     where PPI.entrezA = gene_info.gene_id AND %s = PPI.uniprotB
                     UNION
-                    select gene_id, symbol, description from gene_info INNER JOIN PPI
+                   select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
                     where PPI.entrezB = gene_info.gene_id AND %s = PPI.uniprotA"""
 
         #cur.execute("""DROP TEMPORARY TABLE IF EXISTS REC""")
@@ -125,12 +142,13 @@ def my_query(qt, IDtype):
                     <p>are:</p>""" %(ann[1], ann[0], ann[2], ann[3])
 
         print  """<table class="table table-striped">
-                <th>Gene ID</th><th>Symbol</th><th>Description</th>
+                <th>Gene ID</th><th>Symbol</th><th>Supporing data set</th>
                 <tr>"""
 
-        for (a, b, c) in Results:
+        for (a, b, c, d) in Results:
             print "<td>%s</td>" % (a)
             print "<td>%s</td>" % (b)
+            print "<td>%s</td>" % (d)
             print "<td>%s</td>" % (c)
             print "</tr>"
         print "</table>"
@@ -196,9 +214,12 @@ def get_prot_ann(q):
     res = cur.fetchall()[0]
     return res
 
+
+
+
 qt = parse_query(query)
 for q in qt:
-    my_query(q, IDtype)
+    my_query(q, IDtype, ppdb)
 
 
 print """
