@@ -1,0 +1,41 @@
+<html>
+<body>
+<form action="./cgi-bin/example.cgi" method="GET">
+    <table border="2" width="700">
+
+<tr>
+    <td align="left">
+            Please input your <b>protein(s) of interest</b>. Use semi-colon as a delimiter for multiple queries. (Max = 10)
+    </td>
+
+    <td align="left">
+            <INPUT TYPE="text" NAME="Protein"> <br>
+        </td>
+    </tr>
+
+        <td align="left">
+                Please select the <b>organism. </b> <br>
+                <INPUT TYPE="radio" NAME="Organism" VALUE ="Human"> Human <INPUT TYPE="radio" NAME="Organism" VALUE ="Fly"> Fly
+<INPUT TYPE="radio" NAME="Organism" VALUE ="Yeast"> Yeast <br>
+        </td>
+    </tr>
+            <td align="left">
+                Please select the <b>interaction type</b>
+    </td>
+
+    <td align="left">
+        <SELECT NAME="Interaction">
+            <OPTION default>
+            <OPTION>Binary
+            <OPTION>Co-complex
+            </SELECT><br>
+        </td>
+    </tr>
+
+<tr>
+    <td align="center">
+        <input type="submit" value="Submit">
+    </td>
+</tr>
+</form>
+</body> </html>
