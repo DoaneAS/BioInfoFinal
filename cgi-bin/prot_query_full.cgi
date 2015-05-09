@@ -28,7 +28,9 @@ query = form.getfirst('Protein', 0)
 IDtype = form.getfirst('IDtype')
 ppdb = form.getvalue('ppdb')
 #query = 'KRAS; SP100; ARAF'
-
+#query = "KRAS;SP100;SUMO1;TRAF4;TP53BP2"
+#IDtype = "symbol"
+#ppdb = ['LIT13', 'HI14', 'YU11']
 
 print """
 <!DOCTYPE html>
@@ -58,8 +60,6 @@ print """
 
 </head>
 """
-
-
 
 
 
@@ -168,7 +168,7 @@ def my_query(qt, IDtype, ppdb):
 
     finally:
         con.close()
-        return (Results, pair)
+        return (Results, ann)
           # fetch all rows into the Results array
 
 
@@ -183,8 +183,8 @@ def get_prot_ann(q):
         FROM gene_master
         WHERE %s in (gene_id, symbol, uniprot_id)"""
     cur.execute(stmt, (q,))
-    res = cur.fetchall()[0]
-    return res
+    res = cur.fetchall()
+    return res[0]
 
 
 
@@ -193,21 +193,28 @@ qt = parse_query(query)
 my_ppi = []
 nodes = set()
 DbResults = {}
-for q in qt:
-    allres = my_query(q, IDtype, ppdb)
-    res = allres[1]
-    nodes.add(tuple(sorted([res[0], res[1]])))
-    if q not in DbResults:
-        DbResults[q] = []
-    DbResults
+
 
 nodes = set()
+network_data = {}
 for q in qt:
-    res = my_query(q, IDtype, ppdb)
-    p2 = res[1]
-    for r in res[0]:
-        #nodes.add(tuple(sorted([p2, r[0]])
-        nodes.add(tuple(sorted([r[0], p2])))
+    all_d = {}
+    allres = my_query(q, IDtype, ppdb)
+    qp = allres[1][1]
+    all_d[qp] = {}
+    all_d['annotation'] = allres[1]
+    all_d['ints'] = {}
+    for p in allres[0]:
+        all_d['ints'][p[1]] = p
+    network_data[qp] = all_d
+
+#make network
+for k in network_data.keys():
+    for pintr in network_data[k]['ints'].keys():
+        nodes.add(tuple(sorted([k, pintr])))
+
+
+
 
 custm_ppi = list(nodes)
 
@@ -216,9 +223,45 @@ def make_nxG(ppi):
     G.add_edges_from(ppi)
     return G
 
-def get_net_stats(ppi):
-    G = nx.Graph()
-    G.add_edges_from(ppi)
+
+
+
+
+
+def get_net_stats(ppi, qt):
+    G = make_nxG(ppi)
+    ns = G.number_of_nodes()
+    ne = G.number_of_edges()
+    qtl = len(qt)
+    #avgc = nx.average_clustering(G)
+    dcon = nx.average_degree_connectivity(G)
+    btwc = nx.betweenness_centrality(G)
+
+    print """<h5>A total of %s unique interactions were found in your query of %s proteins</h5>""" %(ns, qtl)
+    print """A network model for these interactions had the following properties"""
+
+    print """<table>
+             <thead>
+             <tr>
+             <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Number of nodes</td>
+      <td>Number of edges</td>
+      <td>Average clustering coefficient</td>
+      <td>Average degree connectivity</td>
+    </tr>
+    <tr>
+      <td>%s</td>
+      <td>%s</td>
+      <td>%s</td>
+      <td>%s</td>
+    </tr>""" %(ns, ne, ns, dcon)
+    return
+
+
 
 
 
@@ -228,7 +271,7 @@ def make_net_plot(ppi):
     #print "Degree sequence", degree_sequence
     dmax=max(degree_sequence)
     plt.loglog(degree_sequence,'b-',marker='o')
-    plt.title("Degree rank plot")
+    plt.title("Degree rank plot \n Largest subgraph (inset)")
     plt.ylabel("degree")
     plt.xlabel("rank")
     # draw graph in inset
@@ -239,24 +282,50 @@ def make_net_plot(ppi):
     nx.draw_networkx_nodes(Gcc,pos,node_size=20)
     nx.draw_networkx_edges(Gcc,pos,alpha=0.4)
 
-    plt.savefig('/home/local/CORNELL/asd223/final/images/plot.png')
-
-
-def make_table(Results):
-
-
+    plt.savefig('/home/local/CORNELL/asd223/final/images/plot.svg', format="svg")
     print '''
     <html>
     <body>
-    <h1>CGI is working. Image should display below:</h1>
-    <img src="../images/plot.png">
-    <h1>Image should display above</h1>
+    <h4>Network degreee distribution</h4>
+    <h4>Network plot of largest connected subraph inset</h4>
+    <img src="../images/plot.svg">
     </body>
     </html>
     '''
 
 
+def make_table(network_data):
+    for k, v in network_data.items():
+        p1ann = network_data[k]['annotation']
+        p2s =  network_data[k]['ints']
+        ps = len(p2s)
+
+        print """<html><h4>Protein of interest: %s (%s)</h4>
+                    <h5>%s - %s</h5>
+                    <thead><title>%s interactions</title></thead>
+                    <body>
+                    <p>are:</p>""" %(p1ann[1], p1ann[0], p1ann[2], p1ann[3], ps)
+
+        print  """<table class="table table-striped">
+                <th>Gene ID</th><th>Symbol</th><th>Supporing data set</th><th>Description</th>
+                <tr>"""
+
+        for (a, b, c, d) in p2s.values():
+            print "<td>%s</td>" % (a)
+            print "<td>%s</td>" % (b)
+            print "<td>%s</td>" % (d)
+            print "<td>%s</td>" % (c)
+            print "</tr>"
+        print "</table>"
+
+
+
+
+
+
+
+
+get_net_stats(custm_ppi, qt)
 make_net_plot(custm_ppi)
-
-
+make_table(network_data)
 
