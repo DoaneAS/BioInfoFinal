@@ -13,8 +13,6 @@ import tempfile
 import os
 
 import numpy as np
-import tempfile
-import os
 os.environ['MPLCONFIGDIR'] = tempfile.mkdtemp()
 
 import matplotlib as mpl
@@ -32,9 +30,7 @@ ppdb = form.getvalue('ppdb')
 #IDtype = "symbol"
 #ppdb = ['LIT13', 'HI14', 'YU11']
 
-print """
-<!DOCTYPE html>
-<html>
+print """<!DOCTYPE html>
 
 <head>
     <meta charset="utf-8">
@@ -46,21 +42,38 @@ print """
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <title>Human protein interactome explorer</title>
-    <!-- Latest compiled and minified
-        CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <!-- Custom styles for this template -->
-    <!--link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/flatly/bootstrap.min.css" rel="stylesheet"-->
-
-
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/paper/bootstrap.min.css" rel="stylesheet">
-
-
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="assets/css/formalize.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.formalize.js"></script>
 </head>
 """
-
+#begin body
+print """
+    <body>
+    <div class="container-fluid">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="index.shtml">Search interactions</a></li>
+                    <li role="presentation"><a href="#">About</a></li>
+                    <li role="presentation"><a href="#">Contact</a></li>
+                </ul>
+                <h6 class="text-muted">Human interactome network explorer</h6>
+            </nav>
+        </div>
+    </div>"""
 
 
 
@@ -214,8 +227,6 @@ for k in network_data.keys():
         nodes.add(tuple(sorted([k, pintr])))
 
 
-
-
 custm_ppi = list(nodes)
 
 def make_nxG(ppi):
@@ -223,55 +234,13 @@ def make_nxG(ppi):
     G.add_edges_from(ppi)
     return G
 
-
-
-
-
-
-def get_net_stats(ppi, qt):
-    G = make_nxG(ppi)
-    ns = G.number_of_nodes()
-    ne = G.number_of_edges()
-    qtl = len(qt)
-    #avgc = nx.average_clustering(G)
-    dcon = nx.average_degree_connectivity(G)
-    btwc = nx.betweenness_centrality(G)
-
-    print """<h5>A total of %s unique interactions were found in your query of %s proteins</h5>""" %(ns, qtl)
-    print """A network model for these interactions had the following properties"""
-
-    print """<table>
-             <thead>
-             <tr>
-             <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Number of nodes</td>
-      <td>Number of edges</td>
-      <td>Average clustering coefficient</td>
-      <td>Average degree connectivity</td>
-    </tr>
-    <tr>
-      <td>%s</td>
-      <td>%s</td>
-      <td>%s</td>
-      <td>%s</td>
-    </tr>""" %(ns, ne, ns, dcon)
-    return
-
-
-
-
-
 def make_net_plot(ppi):
     G = make_nxG(ppi)
     degree_sequence=sorted(nx.degree(G).values(),reverse=True) # degree sequence
     #print "Degree sequence", degree_sequence
     dmax=max(degree_sequence)
     plt.loglog(degree_sequence,'b-',marker='o')
-    plt.title("Degree rank plot \n Largest subgraph (inset)")
+    plt.title("Degree rank plot with Largest subgraph (inset)")
     plt.ylabel("degree")
     plt.xlabel("rank")
     # draw graph in inset
@@ -281,51 +250,95 @@ def make_net_plot(ppi):
     plt.axis('off')
     nx.draw_networkx_nodes(Gcc,pos,node_size=20)
     nx.draw_networkx_edges(Gcc,pos,alpha=0.4)
-
-    plt.savefig('/home/local/CORNELL/asd223/final/images/plot.svg', format="svg")
-    print '''
-    <html>
-    <body>
-    <h4>Network degreee distribution</h4>
-    <h4>Network plot of largest connected subraph inset</h4>
-    <img src="../images/plot.svg">
-    </body>
-    </html>
-    '''
+    plt.savefig('/home/local/CORNELL/asd223/final/images/plot.svg', format="svg", width="50", height="50")
+    return
 
 
-def make_table(network_data):
+def make_tables(ppi, network_data):
+    G = make_nxG(ppi)
+    ns = G.number_of_nodes()
+    ne = G.number_of_edges()
+    query_ps = ', '.join(network_data.keys())
+    qtl = len(query_ps)
+    nint = ns - qtl
+    #avgc = nx.average_clustering(G)
+    nx.average_degree_connectivity(G).values
+    dcon =  np.array(nx.degree(G).values()).mean()
+    btwc = nx.betweenness_centrality(G)
+
+
+    print """<!--> b3gin table<-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="heading">
+                    <p class="text-center"><b>Proteins of Interest:</b>%s <a href="http://www.ncbi.nlm.nih.gov/gene/" target="_blank">(%s)</a>
+                        <br><b>Number of network nodes:</b> <i>%s</i>
+                        <br><b>Number of network edges:</b> <i>%s</i>
+                        <br><b>Average degree connectivity</b> %s
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        """ %(query_ps, query_ps, ns, ne, dcon)
+
+    #plot output here
+    print """
+        <!-- Plot -->
+        <div class="col-md-10">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="../images/plot.svg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading">Network degree distribution with largest connected subgraph</h6>
+                </div>
+            </div>
+            <!-- end plot-->"""
+
+    #iter for table data
     for k, v in network_data.items():
         p1ann = network_data[k]['annotation']
         p2s =  network_data[k]['ints']
         ps = len(p2s)
 
-        print """<html><h4>Protein of interest: %s (%s)</h4>
-                    <h5>%s - %s</h5>
-                    <thead><title>%s interactions</title></thead>
-                    <body>
-                    <p>are:</p>""" %(p1ann[1], p1ann[0], p1ann[2], p1ann[3], ps)
+        #query prot ann here
+        print """<div class="heading">
+                    <p class="text-center">
+                        <b>Protein of Interest: %s (%s)</b>
+                        <br><b>%s %s</b>
+                        <br><b>Number of interactors</b> %s
+                    </p>""" %(p1ann[1], p1ann[0], p1ann[2], p1ann[3], ps)
 
-        print  """<table class="table table-striped">
-                <th>Gene ID</th><th>Symbol</th><th>Supporing data set</th><th>Description</th>
-                <tr>"""
-
+        #table
+        print """                <table class="table table-striped table-hover ">
+                        <thead>
+                            <tr>
+                                <th>Gene ID</th>
+                                <th>Symbol</th>
+                                <th>Data set(s)</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>"""
         for (a, b, c, d) in p2s.values():
-            print "<td>%s</td>" % (a)
-            print "<td>%s</td>" % (b)
-            print "<td>%s</td>" % (d)
-            print "<td>%s</td>" % (c)
-            print "</tr>"
-        print "</table>"
+                print """<td>%s</td>""" % (a)
+                print """<td>%s</td>""" % (b)
+                print """<td>%s</td>""" % (d)
+                print """<td>%s</td>""" % (c)
+                print """</tr>"""
 
+        print """</tbody>
+                    </table>"""
+    return
 
-
-
-
-
-
-
-get_net_stats(custm_ppi, qt)
 make_net_plot(custm_ppi)
-make_table(network_data)
+
+make_tables(custm_ppi, network_data)
+
+
 
