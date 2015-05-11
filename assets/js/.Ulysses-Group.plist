@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>createMarkedFile</key>
+	<false/>
+	<key>sheetClusters</key>
+	<array>
+		<array>
+			<string>jquery.formalize.min.js</string>
+		</array>
+		<array>
+			<string>dojo.formalize.js</string>
+		</array>
+		<array>
+			<string>dojo.formalize.min.js</string>
+		</array>
+		<array>
+			<string>mootools.formalize.min.js</string>
+		</array>
+		<array>
+			<string>extjs.formalize.js</string>
+		</array>
+		<array>
+			<string>extjs.formalize.min.js</string>
+		</array>
+		<array>
+			<string>jquery.formalize.js</string>
+		</array>
+		<array>
+			<string>yui.formalize.js</string>
+		</array>
+		<array>
+			<string>jquery.formalize.legacy.js</string>
+		</array>
+		<array>
+			<string>jquery.formalize.legacy.min.js</string>
+		</array>
+		<array>
+			<string>yui.formalize.min.js</string>
+		</array>
+		<array>
+			<string>mootools.formalize.js</string>
+		</array>
+		<array>
+			<string>prototype.formalize.js</string>
+		</array>
+		<array>
+			<string>prototype.formalize.min.js</string>
+		</array>
+	</array>
+</dict>
+</plist>

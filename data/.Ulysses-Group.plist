@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>childOrder</key>
+	<array>
+		<string>Rolland</string>
+	</array>
+	<key>createMarkedFile</key>
+	<false/>
+	<key>sheetClusters</key>
+	<array>
+		<array>
+			<string>entrez_human2longest_uniprot.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2aaseq.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2dbSNP.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2ensembl.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2ensemblTrans.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2entrez.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2geneName.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2length.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2recName.txt</string>
+		</array>
+		<array>
+			<string>uniprot_human2refseq.txt</string>
+		</array>
+		<array>
+			<string>HumanBinary_All.txt</string>
+		</array>
+		<array>
+			<string>mapping.sql</string>
+		</array>
+		<array>
+			<string>public_iuphardb_v2014.3_mysql.sql</string>
+		</array>
+	</array>
+</dict>
+</plist>

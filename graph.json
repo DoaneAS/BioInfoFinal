@@ -1,0 +1,779 @@
+{
+    "directed": false, 
+    "graph": [
+        [
+            "path", 
+            "APC"
+        ]
+    ], 
+    "nodes": [
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "10459"
+        }, 
+        {
+            "id": "8542"
+        }, 
+        {
+            "id": "149473"
+        }, 
+        {
+            "id": "5980"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "699"
+        }, 
+        {
+            "id": "6477"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "5987"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "5901"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "26271"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "8900"
+        }, 
+        {
+            "id": "816"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "246184"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "991"
+        }, 
+        {
+            "id": "1312"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "675"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "283489"
+        }, 
+        {
+            "id": "11275"
+        }, 
+        {
+            "pathway": "APC", 
+            "id": "9820"
+        }, 
+        {
+            "id": "5300"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "5598"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "1062"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "26003"
+        }, 
+        {
+            "id": "10320"
+        }, 
+        {
+            "id": "705"
+        }, 
+        {
+            "id": "84445"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "701"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "388324"
+        }, 
+        {
+            "id": "51455"
+        }, 
+        {
+            "id": "11030"
+        }, 
+        {
+            "id": "6660"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "8881"
+        }, 
+        {
+            "id": "26259"
+        }, 
+        {
+            "id": "5966"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "10133"
+        }, 
+        {
+            "pathway": "MAPK", 
+            "id": "8754"
+        }, 
+        {
+            "id": "8751"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "6934"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "8697"
+        }, 
+        {
+            "pathway": "DNA Damage Control", 
+            "id": "84126"
+        }, 
+        {
+            "id": "51187"
+        }, 
+        {
+            "pathway": "NOTCH", 
+            "id": "6500"
+        }, 
+        {
+            "id": "285987"
+        }, 
+        {
+            "id": "54828"
+        }, 
+        {
+            "id": "114824"
+        }, 
+        {
+            "id": "5879"
+        }, 
+        {
+            "id": "117178"
+        }, 
+        {
+            "id": "6925"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "25788"
+        }, 
+        {
+            "id": "79581"
+        }, 
+        {
+            "id": "54793"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "7157"
+        }, 
+        {
+            "id": "26986"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "51343"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "5546"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "51433"
+        }, 
+        {
+            "id": "27124"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "9978"
+        }, 
+        {
+            "id": "1211"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "29890"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "55249"
+        }, 
+        {
+            "id": "79648"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "51529"
+        }, 
+        {
+            "pathway": "Chromatin Modification", 
+            "id": "57082"
+        }, 
+        {
+            "id": "200845"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "9232"
+        }, 
+        {
+            "id": "163"
+        }, 
+        {
+            "id": "51409"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "11065"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "27338"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "29882"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "4085"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "9184"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "996"
+        }, 
+        {
+            "id": "6623"
+        }, 
+        {
+            "pathway": "APC", 
+            "id": "25847"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "9814"
+        }, 
+        {
+            "id": "339834"
+        }, 
+        {
+            "pathway": "Transcriptional Regulation", 
+            "id": "5925"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "329"
+        }, 
+        {
+            "pathway": "DNA Damage Control", 
+            "id": "890"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "891"
+        }, 
+        {
+            "id": "8161"
+        }, 
+        {
+            "id": "56648"
+        }, 
+        {
+            "id": "171483"
+        }, 
+        {
+            "id": "220082"
+        }, 
+        {
+            "id": "80817"
+        }, 
+        {
+            "pathway": "Apoptosis/Cell Cycle", 
+            "id": "5536"
+        }, 
+        {
+            "id": "51700"
+        }, 
+        {
+            "id": "84766"
+        }, 
+        {
+            "id": "2002"
+        }, 
+        {
+            "id": "375686"
+        }
+    ], 
+    "links": [
+        {
+            "path": "APC", 
+            "target": 89, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 57, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 22, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 34, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 53, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 3, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 49, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 59, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 35, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 6, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 15, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 75, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 7, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 10, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 36, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 46, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 0, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 27, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 32, 
+            "source": 0
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 1
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 2
+        }, 
+        {
+            "path": "APC", 
+            "target": 25, 
+            "source": 4
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 5
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 6
+        }, 
+        {
+            "path": "APC", 
+            "target": 12, 
+            "source": 8
+        }, 
+        {
+            "path": "APC", 
+            "target": 12, 
+            "source": 9
+        }, 
+        {
+            "path": "APC", 
+            "target": 30, 
+            "source": 11
+        }, 
+        {
+            "path": "APC", 
+            "target": 79, 
+            "source": 12
+        }, 
+        {
+            "path": "APC", 
+            "target": 80, 
+            "source": 12
+        }, 
+        {
+            "path": "APC", 
+            "target": 70, 
+            "source": 12
+        }, 
+        {
+            "path": "APC", 
+            "target": 25, 
+            "source": 12
+        }, 
+        {
+            "path": "APC", 
+            "target": 90, 
+            "source": 12
+        }, 
+        {
+            "path": "APC", 
+            "target": 64, 
+            "source": 12
+        }, 
+        {
+            "path": "APC", 
+            "target": 72, 
+            "source": 13
+        }, 
+        {
+            "path": "APC", 
+            "target": 25, 
+            "source": 14
+        }, 
+        {
+            "path": "APC", 
+            "target": 67, 
+            "source": 16
+        }, 
+        {
+            "path": "APC", 
+            "target": 50, 
+            "source": 17
+        }, 
+        {
+            "path": "APC", 
+            "target": 40, 
+            "source": 17
+        }, 
+        {
+            "path": "APC", 
+            "target": 31, 
+            "source": 17
+        }, 
+        {
+            "path": "APC", 
+            "target": 56, 
+            "source": 17
+        }, 
+        {
+            "path": "APC", 
+            "target": 72, 
+            "source": 18
+        }, 
+        {
+            "path": "APC", 
+            "target": 67, 
+            "source": 19
+        }, 
+        {
+            "path": "APC", 
+            "target": 25, 
+            "source": 20
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 21
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 23
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 24
+        }, 
+        {
+            "path": "APC", 
+            "target": 70, 
+            "source": 25
+        }, 
+        {
+            "path": "APC", 
+            "target": 71, 
+            "source": 25
+        }, 
+        {
+            "path": "APC", 
+            "target": 62, 
+            "source": 25
+        }, 
+        {
+            "path": "APC", 
+            "target": 73, 
+            "source": 25
+        }, 
+        {
+            "path": "APC", 
+            "target": 65, 
+            "source": 25
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 26
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 28
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 29
+        }, 
+        {
+            "path": "APC", 
+            "target": 72, 
+            "source": 30
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 33
+        }, 
+        {
+            "path": "APC", 
+            "target": 45, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 47, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 48, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 74, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 76, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 55, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 81, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 82, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 83, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 58, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 84, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 85, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 63, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 37, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 87, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 66, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 38, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 39, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 41, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 88, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 42, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 43, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 44, 
+            "source": 37
+        }, 
+        {
+            "path": "APC", 
+            "target": 54, 
+            "source": 51
+        }, 
+        {
+            "path": "APC", 
+            "target": 80, 
+            "source": 52
+        }, 
+        {
+            "path": "APC", 
+            "target": 72, 
+            "source": 52
+        }, 
+        {
+            "path": "APC", 
+            "target": 72, 
+            "source": 60
+        }, 
+        {
+            "path": "APC", 
+            "target": 69, 
+            "source": 61
+        }, 
+        {
+            "path": "APC", 
+            "target": 67, 
+            "source": 67
+        }, 
+        {
+            "path": "APC", 
+            "target": 78, 
+            "source": 68
+        }, 
+        {
+            "path": "APC", 
+            "target": 68, 
+            "source": 68
+        }, 
+        {
+            "path": "APC", 
+            "target": 77, 
+            "source": 72
+        }, 
+        {
+            "path": "APC", 
+            "target": 86, 
+            "source": 72
+        }
+    ], 
+    "multigraph": false
+}
