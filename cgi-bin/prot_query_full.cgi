@@ -48,15 +48,15 @@ print """<!DOCTYPE html>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <!-- Custom styles for this template -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/paper/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="/home/local/CORNELL/asd223/final/theme.css">
     <link rel="stylesheet" href="assets/css/formalize.css" />
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="assets/js/jquery.formalize.js"></script>
+    <script src="/home/local/CORNELL/asd223/final/assets/js/jquery.formalize.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 """
 #begin body
@@ -137,7 +137,7 @@ def my_query(qt, IDtype, ppdb):
 
     con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
     try:
-        #con = mdb.connect(host='127.0.0.1', port=3307, user='asd223', passwd='5NKEAP', db='ASD223_db')
+        #con = mdb.connect(host='127.0.0.1', user='asd223', passwd='5NKEAP', db='ASD223_db')
         cur = con.cursor()
 
         stmt_s = """select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
@@ -299,6 +299,8 @@ def make_tables(ppi, network_data):
             </div>
             <!-- end plot-->"""
 
+    #d3 force graph button
+    print """<a class="btn btn-primary" href="../fgraph.html" role="button">View force directed graph</a>"""
     #iter for table data
     for k, v in network_data.items():
         p1ann = network_data[k]['annotation']
@@ -341,4 +343,77 @@ make_net_plot(custm_ppi)
 make_tables(custm_ppi, network_data)
 
 
+
+def all_net():
+    con = mdb.connect(host='127.0.0.1', user='asd223', passwd='5NKEAP', db='ASD223_db')
+    cur = con.cursor()
+    stmt = """SELECT entrezA, entrezB from MASTER_P;"""
+    cur.execute(stmt)
+    res = list(cur.fetchall())
+    return res
+
+def get_ca_genes():
+    con = mdb.connect(host='127.0.0.1', user='asd223', passwd='5NKEAP', db='ASD223_db')
+    cur = con.cursor()
+    stmt = """SELECT gene_id from Ca_Pathways"""
+    cur.execute(stmt,)
+    res = cur.fetchall()
+    cag = set([c[0] for c in res])
+    return cag
+
+def ca_genes_paths():
+    con = mdb.connect(host='127.0.0.1', user='asd223', passwd='5NKEAP', db='ASD223_db')
+    cur = con.cursor()
+    stmt = """SELECT symbol, pathway from Ca_Pathways"""
+    cur.execute(stmt,)
+    res = cur.fetchall()
+    #dd = {n[0]:n[1] for n in res} #no fict comp in python 2.6
+    d = {}
+    for n in res:
+        d[n[0]] = n[1]
+    #cag = set([c[0] for c in res])
+    return d
+
+def ca_net():
+    #con = mdb.connect('bscb-teaching.cb.bscb.cornell.edu', 'asd223', '6194', 'adtest')
+    con = mdb.connect(host='127.0.0.1', user='asd223', passwd='5NKEAP', db='ASD223_db')
+    cur = con.cursor()
+
+    #at least one gene in interaction pair is ca path gene
+    stmt = """SELECT symbolA, symbolB from MASTER_P
+    INNER JOIN Ca_Pathways
+    ON Ca_Pathways.gene_id
+    IN (MASTER_P.symbolA, MASTER_P.symbolB)"""
+
+    cur.execute(stmt)
+    Results = cur.fetchall()  # fetch all rows into the Results array
+    total = len(Results)
+    #cur.execute("DROP TEMPORARY TABLE rec")
+    entries = []
+    return list(Results)
+
+#pp_ca = ca_net() #workinfg but not currently used
+cagenes = get_ca_genes()
+#all_ppi = all_net()
+ca_path_dict = ca_genes_paths()
+
+
+import networkx as nx
+G = nx.Graph()
+G.add_edges_from(custm_ppi)
+
+for n in G.node:
+    if n in ca_path_dict:
+        G.node[n]['pathway'] = ca_path_dict[n]
+
+
+import json
+from networkx.readwrite import json_graph
+
+data = json_graph.node_link_data(G)
+with open('/home/local/CORNELL/asd223/final/images/graph.json', 'w') as f:
+    json.dump(data, f, indent=4)
+
+
+print data
 
