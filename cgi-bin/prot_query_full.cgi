@@ -24,11 +24,51 @@ import networkx as nx
 form = FieldStorage()
 query = form.getfirst('Protein', 0)
 IDtype = form.getfirst('IDtype')
+#IDtype = "symbol"
 ppdb = form.getvalue('ppdb')
 #query = 'KRAS; SP100; ARAF'
 #query = "KRAS;SP100;SUMO1;TRAF4;TP53BP2"
 #IDtype = "symbol"
 #ppdb = ['LIT13', 'HI14', 'YU11']
+
+##parse and check query
+
+def parse_query(query):
+    #returns query ids in list
+    query = query.replace(' ', '')
+    qt = query.split(";")
+    return qt
+
+def check_query(query, IDtype):
+    hits = []
+    no_hits = []
+    """check if query ids exist and return matching list and not-matching list as tuple"""
+    qs = parse_query(query)
+    con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
+    cur = con.cursor()
+    stmt_e = """SELECT symbol from PPI_genes
+        WHERE %s IN (entrez)"""
+    stmt_s = """SELECT symbol from PPI_genes
+        WHERE %s IN (symbol)"""
+    stmt_u = """SELECT symbol from PPI_genes
+        WHERE %s IN (uniprot)"""
+    for q in qs:
+        if "entrez" in IDtype:
+            cur.execute(stmt_e, (q,))
+        if "symbol" in IDtype:
+            cur.execute(stmt_s, (q,))
+        if "uniprot" in IDtype:
+            cur.execute(stmt_u, (q,))
+        res = cur.fetchall()
+        if len(res) <1:
+            no_hits.append(q)
+        else:
+            hits.append(res[0][0])
+    return (hits, no_hits)
+
+q_query = check_query(query, IDtype)
+q_checked = q_query[0]
+q_notfnd = q_query[1]
 
 print """<!DOCTYPE html>
 
@@ -78,6 +118,8 @@ print """
 
 
 
+
+
 def uniprot2gene(query):
     q = query
     con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
@@ -92,11 +134,7 @@ geneids = []
 #for q in qt:
 #    geneids.append(uniprot2gene(q)[0][0])
 
-def parse_query(query):
-    #returns query ids in list
-    query = query.replace(' ', '')
-    qt = query.split(";")
-    return qt
+
 
 
 
@@ -185,6 +223,42 @@ def my_query(qt, IDtype, ppdb):
           # fetch all rows into the Results array
 
 
+def my_query_checked(q_checked, ppdb):
+    #get info on query gene
+    qt = q_checked
+    ann = get_prot_ann(qt)
+
+    #set up PPI table with indicated databases
+    get_ppdb(ppdb)
+
+    con = mdb.connect('127.0.0.1', 'asd223', '5NKEAP', 'ASD223_db')
+    try:
+        #con = mdb.connect(host='127.0.0.1', user='asd223', passwd='5NKEAP', db='ASD223_db')
+        cur = con.cursor()
+
+        stmt_s = """select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
+                    where PPI.entrezA = gene_info.gene_id AND %s = PPI.symbolB
+                    UNION
+                    select gene_id, symbol, description, ppdb from gene_info INNER JOIN PPI
+                    where PPI.entrezB = gene_info.gene_id AND %s = PPI.symbolA"""
+
+
+        #cur.execute("""DROP TEMPORARY TABLE IF EXISTS REC""")
+
+
+        cur.execute(stmt_s, (qt, qt))
+        Results = cur.fetchall()
+        pair = (Results[0][1], qt)
+
+
+    except mdb.Error, e:
+        print "Error %d: %s" % (e.args[0], e.args[1])
+        sys.exit(1)
+
+    finally:
+        con.close()
+        return (Results, ann)
+
 
 
 
@@ -202,7 +276,8 @@ def get_prot_ann(q):
 
 
 
-qt = parse_query(query)
+#qt = parse_query(query)
+qt = q_checked
 my_ppi = []
 nodes = set()
 DbResults = {}
@@ -212,7 +287,7 @@ nodes = set()
 network_data = {}
 for q in qt:
     all_d = {}
-    allres = my_query(q, IDtype, ppdb)
+    allres = my_query_checked(q, ppdb)
     qp = allres[1][1]
     all_d[qp] = {}
     all_d['annotation'] = allres[1]
