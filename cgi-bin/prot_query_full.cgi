@@ -300,7 +300,7 @@ def make_tables(ppi, network_data):
             <!-- end plot-->"""
 
     #d3 force graph button
-    print """<a class="btn btn-primary" href="../fgraph.html" role="button">View force directed graph</a>"""
+    print """<a class="btn btn-primary" href="../fgraph.shtml" role="button">View force directed graph</a>"""
     #iter for table data
     for k, v in network_data.items():
         p1ann = network_data[k]['annotation']

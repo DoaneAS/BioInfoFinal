@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!--#include virtual="header.html" -->
+<style>
+body {
+}
+.node {stroke: #fff; stroke-width: .5px;}
+.link {stroke: #999; stroke-opacity: .3;}
+
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;}
+
+</style>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+
+        <div id="d3pathgraph"></div>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.legend.js"></script>
+<script>
+
+var margin = {top: 10, right: 80, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+var color = d3.scale.category20();
+
+var force = d3.layout.force()
+    .charge(-60)
+    .linkDistance(20)
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json("images/graph.json", function(error, graph) {
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+  var node = svg.selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", 4)
+      .style("fill", function(d) { return color(d.pathway); })
+      .attr("data-legend",function(d) { return d.pathway})
+      .call(force.drag);
+
+  node.append("title")
+      .text(function(d) { return d.name; });
+
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  });
+
+  legend = svg.append("g")
+  .attr("class","legend")
+  .attr("transform","translate(50,30)")
+  .style("font-size","12px")
+  .call(d3.legend)
+
+  setTimeout(function() {
+    legend
+      .style("font-size","14px")
+      .attr("data-style-padding",10)
+      .call(d3.legend)
+  },1000)
+
+});
+
+
+</script>
+
+  <div class="heading">
+  <p class="text-center"><h6>Network nodes colored by:<a href="http://www.sciencemag.org/content/339/6127/1546.long" target="_blank">"12 cancer pathways"</a></h6></p>
+  </div>
+</div>
