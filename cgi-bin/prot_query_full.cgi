@@ -265,14 +265,20 @@ def make_tables(ppi, network_data):
     nx.average_degree_connectivity(G).values
     dcon =  np.array(nx.degree(G).values()).mean()
     btwc = nx.betweenness_centrality(G)
+    p_of_int = []
+    poi = []
+    for qp in network_data.keys():
+        gid = (network_data[qp]['annotation'][0])
+        line = qp+""" <a href="http://www.ncbi.nlm.nih.gov/gene/%s">(%s)</a>""" %(gid, gid)
+        poi.append(line)
+    poi= ', '.join(poi)
 
-
-    print """<!--> b3gin table<-->
+    print """
     <div class="container">
         <div class="row">
             <div class="col-md-10">
                 <div class="heading">
-                    <p class="text-center"><b>Proteins of Interest:</b>%s <a href="http://www.ncbi.nlm.nih.gov/gene/" target="_blank">(%s)</a>
+                    <p class="text-center"><b>Proteins of Interest:</b> %s
                         <br><b>Number of network nodes:</b> <i>%s</i>
                         <br><b>Number of network edges:</b> <i>%s</i>
                         <br><b>Average degree connectivity</b> %s
@@ -281,7 +287,7 @@ def make_tables(ppi, network_data):
             </div>
         </div>
         <br>
-        """ %(query_ps, query_ps, ns, ne, dcon)
+        """ %(poi, ns, ne, dcon)
 
     #plot output here
     print """
@@ -306,6 +312,7 @@ def make_tables(ppi, network_data):
         p1ann = network_data[k]['annotation']
         p2s =  network_data[k]['ints']
         ps = len(p2s)
+        p1idlink = """<a href="http://www.ncbi.nlm.nih.gov/gene/%s">%s</a>""" %(p1ann[0], p1ann[0])
 
         #query prot ann here
         print """<div class="heading">
@@ -313,7 +320,7 @@ def make_tables(ppi, network_data):
                         <b>Protein of Interest: %s (%s)</b>
                         <br><b>%s %s</b>
                         <br><b>Number of interactors</b> %s
-                    </p>""" %(p1ann[1], p1ann[0], p1ann[2], p1ann[3], ps)
+                    </p>""" %(p1ann[1], p1idlink, p1ann[2], p1ann[3], ps)
 
         #table
         print """                <table class="table table-striped table-hover ">
@@ -328,7 +335,7 @@ def make_tables(ppi, network_data):
                         <tbody>
                             <tr>"""
         for (a, b, c, d) in p2s.values():
-                print """<td>%s</td>""" % (a)
+                print """<td><a href="http://www.ncbi.nlm.nih.gov/gene/%s">%s</a></td>""" % (a,a)
                 print """<td>%s</td>""" % (b)
                 print """<td>%s</td>""" % (d)
                 print """<td>%s</td>""" % (c)
