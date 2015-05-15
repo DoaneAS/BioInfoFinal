@@ -85,6 +85,12 @@
 		<array>
 			<string>prot_query_ca.cgi</string>
 		</array>
+		<array>
+			<string>prot_query_full_backup.cgi</string>
+		</array>
+		<array>
+			<string>prot_query_server.cgi</string>
+		</array>
 	</array>
 </dict>
 </plist>
