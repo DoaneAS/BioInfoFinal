@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+        content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Human protein interactome explorer</title>
+    <!-- Latest compiled and minified
+        CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!-- Custom styles for this template -->
+    <!--link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/flatly/bootstrap.min.css" rel="stylesheet"-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/paper/bootstrap.min.css" rel="stylesheet">
+    <!--link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css" rel="stylesheet"-->
+    <!--link href="theme.css" rel="stylesheet"-->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="assets/css/formalize.css" />
+    <!--link rel="stylesheet" href="assets/css/demo.css" /-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.formalize.js"></script>
+    <style id="jsbin-css">
+    p {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        line-height: 1.6em;
+        font-size: 20px;
+    }
+    
+    .jumbotron {
+        text-align: center;
+    }
+    
+    .jumbotron p {
+        font-size: 20px;
+        font-weight: normal;
+    }
+    
+    .navbar-default .navbar-brand {
+        font-size: 20px;
+    }
+    
+    .navbar-default .navbar-brand,
+    .navbar-default .navbar-nav > li > a {
+        color: #333;
+    }
+    
+    .btn {
+        font-size: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">Human interactome resource</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a>Search</a>
+                    </li>
+                    <li>
+                        <a>Data sets</a>
+                    </li>
+                    <li>
+                        <a>Contact</a>
+                    </li>
+                    <li>
+                        <a>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Main jumbotron for a primary marketing message or call to action
+            -->
+           <!--Main CONTENT BELOW -->
+        <!--Main form for queries including panel -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="heading">
+                        <center><b>Protein of Interest: <a href="http://www.ncbi.nlm.nih.gov/gene/3845" target="_blank">KRAS</a> (3845)</b>
+                            <br><b>Organism:</b> <i>H. sapiens</i>
+                            <br><b>Interaction Type:</b> Binary
+                            <br><b>Number of interactors</b> 555
+                            <div> </div>
+                            <br>
+                            <br>
+                        </center>
+                    </div>
+                    <div id="temp0"> </div>
+                    <br>
+                    <br>
+                    <div class="protein">
+                        <div class="results">
+                            <table class="small">
+                                <tr class="cols">
+                                    <td width=10%>Name</td>
+                                    <td width=30%>Evidence Code(s)</td>
+                                    <td width=60%>PubMed ID</td>
+                                </tr>
+                                <tr>
+                                    <td class="ele" valign=top width=10%><a href="http://www.ncbi.nlm.nih.gov/gene/5894" target="_blank">RAF1</a></td>
+                                    <td valign=top width=30%><a href="http://hint.yulab.org/psi-mi25.obo.txt" title=" in vitro" target="_blank">0492</a></td>
+                                    <td valign=top width=60%><a href="http://www.ncbi.nlm.nih.gov/pubmed/9446616" target="_blank" title="Sakatsume et al. The Journal of biological chemistry. Jan 1998.">9446616</a> </td>
+                                </tr>
+                                <tr height=5px></tr>
+                                <tr>
+                                    <td valign=top width=10%></td>
+                                    <td valign=top width=30%><a href="http://hint.yulab.org/psi-mi25.obo.txt" title=" two hybrid" target="_blank">0018</a></td>
+                                    <td valign=top width=60%><a href="http://www.ncbi.nlm.nih.gov/pubmed/10783161" target="_blank" title="Li et al. Genes &amp; development. Apr 2000.">10783161</a> </td>
+                                </tr>
+                                <tr height=5px></tr>
+                                <tr>
+                                    <td valign=top width=10%></td>
+                                    <td valign=top width=30%><a href="http://hint.yulab.org/psi-mi25.obo.txt" title=" fluorescent resonance energy transfer" target="_blank">0055</a></td>
+                                    <td valign=top width=60%><a href="http://www.ncbi.nlm.nih.gov/pubmed/20080631" target="_blank" title="">20080631</a> </td>
+                                </tr>
+                                <tr height=5px></tr>
+                            </table>
+                            
+                            
+                            <table class="table table-small">
+                <th>Gene ID</th><th>Symbol</th><th>Supporing data set</th><th>Description</th>
+                <tr>
+<td>1820</td>
+<td>ARID3A</td>
+<td>LIT13</td>
+<td>AT rich interactive domain 3A (BRIGHT-like)</td>
+</tr>
+<td>88</td>
+<td>ACTN2</td>
+<td>HI14</td>
+<td>actinin, alpha 2</td>
+</tr>
+<td>1788</td>
+<td>DNMT3A</td>
+<td>HI14</td>
+<td>DNA (cytosine-5-)-methyltransferase 3 alpha</td>
+</tr>
+<td>51421</td>
+<td>AMOTL2</td>
+<td>HI14</td>
+<td>angiomotin like 2</td>
+</tr>
+<td>7341</td>
+<td>SUMO1</td>
+<td>HI14</td>
+<td>small ubiquitin-like modifier 1</td>
+</tr>
+<td>11335</td>
+<td>CBX3</td>
+<td>LIT13</td>
+<td>chromobox homolog 3</td>
+</tr>
+<td>9994</td>
+<td>CASP8AP2</td>
+<td>LIT13</td>
+<td>caspase 8 associated protein 2</td>
+</tr>
+<td>80342</td>
+<td>TRAF3IP3</td>
+<td>HI14</td>
+<td>TRAF3 interacting protein 3</td>
+</tr>
+<td>285093</td>
+<td>RTP5</td>
+<td>HI14</td>
+<td>receptor (chemosensory) transporter protein 5 (putative)</td>
+</tr>
+<td>7329</td>
+<td>UBE2I</td>
+<td>LIT13</td>
+<td>ubiquitin-conjugating enzyme E2I</td>
+</tr>
+<td>51101</td>
+<td>ZC2HC1A</td>
+<td>HI14</td>
+<td>zinc finger, C2HC-type containing 1A</td>
+</tr>
+<td>8445</td>
+<td>DYRK2</td>
+<td>HI14</td>
+<td>dual-specificity tyrosine-(Y)-phosphorylation regulated kinase 2</td>
+</tr>
+<td>84456</td>
+<td>L3MBTL3</td>
+<td>HI14</td>
+<td>l(3)mbt-like 3 (Drosophila)</td>
+</tr>
+<td>2113</td>
+<td>ETS1</td>
+<td>LIT13</td>
+<td>v-ets avian erythroblastosis virus E26 oncogene homolog 1</td>
+</tr>
+<td>1911</td>
+<td>PHC1</td>
+<td>HI14</td>
+<td>polyhomeotic homolog 1 (Drosophila)</td>
+</tr>
+<td>1390</td>
+<td>CREM</td>
+<td>LIT13</td>
+<td>cAMP responsive element modulator</td>
+</tr>
+<td>5371</td>
+<td>PML</td>
+<td>LIT13</td>
+<td>promyelocytic leukemia</td>
+</tr>
+<td>54810</td>
+<td>GIPC2</td>
+<td>HI14</td>
+<td>GIPC PDZ domain containing family, member 2</td>
+</tr>
+<td>9584</td>
+<td>RBM39</td>
+<td>HI14</td>
+<td>RNA binding motif protein 39</td>
+</tr>
+<td>23468</td>
+<td>CBX5</td>
+<td>LIT13,YU11,HI14</td>
+<td>chromobox homolog 5</td>
+</tr>
+<td>6672</td>
+<td>SP100</td>
+<td>LIT13,HI14</td>
+<td>SP100 nuclear antigen</td>
+</tr>
+</table>
+                            
+                            
+                            
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                                     <footer class="footer">
+                <p>Ashley S Doane 2015
+                    <br>
+                </p>
+            </footer>
+</body>
+
+</html>
