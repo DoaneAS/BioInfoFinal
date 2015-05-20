@@ -25,28 +25,10 @@
 			<string>CervBinaryHQ.txt</string>
 		</array>
 		<array>
-			<string>make_db.py</string>
-		</array>
-		<array>
-			<string>make_db2.py</string>
-		</array>
-		<array>
 			<string>Yeastgeneinfo.txt</string>
 		</array>
 		<array>
-			<string>make_ppi.py</string>
-		</array>
-		<array>
-			<string>make_mqsql_full.py</string>
-		</array>
-		<array>
 			<string>make_mysql_full.py</string>
-		</array>
-		<array>
-			<string>make_pub.py</string>
-		</array>
-		<array>
-			<string>make_pub2.py</string>
 		</array>
 		<array>
 			<string>import_ca_path.py</string>
@@ -59,9 +41,6 @@
 		</array>
 		<array>
 			<string>make_ltdb.py</string>
-		</array>
-		<array>
-			<string>make_yudb.py</string>
 		</array>
 		<array>
 			<string>make_master_ppi.py</string>
